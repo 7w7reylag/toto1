@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Números Pares</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="numberDisplay">2</div>
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#numberDisplay {
+    font-size: 100px;
+    color: white;
+}
+let currentNumber = 2; // Comenzamos con el primer número par
+let previousNumber = 0; // Variable para almacenar el número par anterior
+
+// Función para actualizar el número en la pantalla
+function updateDisplay() {
+    document.getElementById('numberDisplay').innerText = currentNumber;
+}
+
+// Evento para el clic izquierdo
+document.body.addEventListener('click', function() {
+    previousNumber = currentNumber; // Guardamos el número actual antes de incrementar
+    currentNumber += 2; // Avanzamos al siguiente número par
+    updateDisplay(); // Actualizamos la pantalla
+});
+
+// Evento para el clic derecho
+document.body.addEventListener('contextmenu', function(event) {
+    event.preventDefault(); // Prevenimos el menú contextual
+    if (previousNumber > 0) { // Solo retrocedemos si hay un número anterior
+        currentNumber = previousNumber; // Retrocedemos al número par anterior
+        updateDisplay(); // Actualizamos la pantalla
+    }
+});
+
